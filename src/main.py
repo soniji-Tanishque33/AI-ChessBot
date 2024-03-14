@@ -24,6 +24,19 @@ class main:
             game.show_pieces(screen)
 
             for event in pygame.event.get():
+                """ CLICK EVENTS """
+                #click
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    pass
+
+                # click motion
+                if event.type == pygame.MOUSEMOTION:
+                    pass
+                
+                # click up
+                if event.type == pygame.MOUSEMOTIONUP:
+                    pass
+
                 """ QUIT CHECK """
                 if event.type == pygame.QUIT:
                     pygame.quit()
