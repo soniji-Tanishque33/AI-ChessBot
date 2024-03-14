@@ -1,11 +1,13 @@
 import pygame
 from const import *
 from board import Board
+from dragger import Dragger
 
 
 class Game:
     def __init__ (self):
         self.Board = Board()
+        self.dragger = Dragger()
 
     def show_bg(self, surface):
         
@@ -26,8 +28,11 @@ class Game:
                 # cannot understand why d i need to revert the order
                 #
                 if self.Board.squares[col][row].has_piece():
+
+                    # blit all pieces accept dragger
                     piece = self.Board.squares[col][row].piece
-                    img = pygame.image.load(piece.loc)
-                    img_center = row * SQ_SIZE + SQ_SIZE // 2, col * SQ_SIZE + SQ_SIZE // 2
-                    piece.texture_rect = img.get_rect(center=img_center)
-                    surface.blit(img, piece.texture_rect)
+                    if piece is not self.dragger.piece:
+                        img = pygame.image.load(piece.loc)
+                        img_center = row * SQ_SIZE + SQ_SIZE // 2, col * SQ_SIZE + SQ_SIZE // 2
+                        piece.texture_rect = img.get_rect(center=img_center)
+                        surface.blit(img, piece.texture_rect)
